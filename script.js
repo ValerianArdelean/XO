@@ -17,8 +17,12 @@ function user2() {
 }
  
 document.getElementById("matrix").addEventListener("click", function(evt) {
-    if (pen != "" && evt.target.innerText == "") {
-        evt.target.innerText = pen;
+    if (pen != "") {
+        if (evt.target.innerText == "") {
+            evt.target.innerText = pen;
+        }
+    } else {
+        alert("SET USER FIRST !!");
     }
 });
 
