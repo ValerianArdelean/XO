@@ -1,0 +1,39 @@
+* {
+    border: 1px solid black;
+}
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+h1 {
+    text-align: center;
+    margin: 3%;
+}
+button {
+    margin: 5%;
+}
+button:hover {
+    cursor: pointer;
+}
+#matrix {
+    width: 600px;
+    height: 600px;
+    background-color: red;
+    margin: auto;
+    margin-top: 3%;
+    display: flex;
+    display: -webkit-flexbox;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.cell {
+    width: 190px;
+    height: 190px;
+    margin: 2px;
+    background-color: white;
+}
+
+
