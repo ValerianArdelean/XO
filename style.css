@@ -1,6 +1,8 @@
-section {
+.flex {
     display: flex;
+    display: -webkit-flexbox;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     justify-content: center;
 }
 h1 {
@@ -8,6 +10,10 @@ h1 {
     margin: 3%;
 }
 button {
+    width: 10%;
+    height: 5%;
+    border: 1px solid gray;
+    border-radius: 10px;
     margin: 5%;
 }
 button:hover {
@@ -19,11 +25,6 @@ button:hover {
     background-color: red;
     margin: auto;
     margin-top: 3%;
-    display: flex;
-    display: -webkit-flexbox;
-    flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
 }
 .cell {
