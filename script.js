@@ -1,7 +1,8 @@
 let player = 0, pen = "", clicks1 = 0, clicks2 = 0;
+let user = document.getElementById("user");
 
 function setPlayer() {
-    document.getElementById("user").innerText = `You are user: ${player} playing with ${pen}`;
+    user.innerText = `PLAYER ${player} SET !\n You are playing with ${pen}`;
 }
 
 function user1() {
@@ -23,12 +24,14 @@ document.getElementById("matrix").addEventListener("click", function(evt) {
                 clicks2 = 0;
                 if (Math.abs(parseInt(clicks1) - parseInt(clicks2)) === 0) {
                     evt.target.innerText = pen;
+                    user.innerText = "SELECT PLAYER ! \n next turn is player 2, playing with O";
                 }
                 ++clicks1;
             } else if (player == 2 && clicks2 == 0) {
                 clicks1 = 0;
                 if (Math.abs(parseInt(clicks1) - parseInt(clicks2)) === 0) {
                     evt.target.innerText = pen;
+                    user.innerText = "SELECT PLAYER ! \n next turn is player 1, playing with X";
                 }
                 ++clicks2;
             }
