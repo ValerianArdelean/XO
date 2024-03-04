@@ -10,14 +10,18 @@ h1 {
     margin: 3%;
 }
 button {
-    width: 10%;
-    height: 5%;
-    border: 1px solid gray;
-    border-radius: 10px;
-    margin: 5%;
+    border: 1px solid purple;
+    border-radius: 5px;
+    background-color: white;
+    padding: 7px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-stretch: ultra-expanded;
 }
 button:hover {
     cursor: pointer;
+    background-color: purple;
+    color: white;
 }
 #matrix {
     width: 600px;
