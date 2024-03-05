@@ -6,26 +6,38 @@
         <link href="style.css" rel="stylesheet"> </link>
     </head>
     <body>
-        <h1 class="text"> Welcome !</h1>
+        <h1 class="text">*** Welcome ! ***</h1>
         <section class="flex">
-            <button id="user1" class="text" type="submit" onclick="user1(); return false;"> I am user 1 </button>
-            <button id="user2" class="text" type="submit" onclick="user2(); return false;"> I am user 2 </button>
+            <button id="user1" class="text" onclick="user1(); return false;">
+                i am user 1
+            </button>
+            <button id="user2" class="text" onclick="user2(); return false;">
+                i am user 2
+            </button>
         </section>
-        <h1 id="message" class="text">SELECT PLAYER !<br> You'l need to select a player before any move you can make ! </h1>
-        <div id="matrix" class="flex" >
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
-            <div class="cell text" ></div>
+        <h2 id="message" class="text">
+            select player !<br>please set who you are first !
+        </h2>
+        <div id="matrix">
+            <div class="flex">
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+            </div>
+            <div class="flex">
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+            </div>
+            <div class="flex">
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+                <div class="cell text" ></div>
+            </div>
         </div>
         <form class="flex">
-            <button id="reset" class="text" type="submit"> START OVER </button>
+            <button id="reset" class="text" type="submit">start over</button>
         </form>
-        <script src="script.js"></script>
+        <script defer src="script.js"></script>
     </body>
 </html>
