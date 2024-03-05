@@ -25,10 +25,11 @@ button:hover {
     background-color: #91C8D3;
 }
 #matrix {
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
     margin: auto;
     margin-top: 4%;
+    margin-bottom: 3%;
 }
 .cell {
     border-radius: 5px;

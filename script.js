@@ -1,4 +1,4 @@
-let curentPlayer = 0, pen = "", clicks1 = 0, clicks2 = 0, clicks = 0;
+let curentPlayer = 0, pen = "", clicks1 = 0, clicks2 = 0, clicks = 0, winner = "", opponent = 0;
 let matrix = document.getElementById("matrix");
 let message = document.getElementById("message");
 let button1 = document.getElementById("user1");
@@ -32,9 +32,10 @@ function resetButton2() {
 function user1() {
     if (!winner) {
         if (clicks1 > 0) {
-            alert("don't try cheating !");
+            alert("don't try on cheating !");
         } else {
             curentPlayer = 1;
+            opponent = 2;
             pen = "X";
             displayPlayer();
             styleButton1();
@@ -46,9 +47,10 @@ function user1() {
 function user2() {
     if (!winner) {
         if (clicks2 > 0) {
-            alert("don't try cheating !");
+            alert("don't try on cheating !");
         } else {
             curentPlayer = 2;
+            opponent = 1;
             pen = "O";
             displayPlayer();
             styleButton2();
@@ -58,66 +60,81 @@ function user2() {
 }
 
 function checkWinner() {
+    let mainDiagX = true, mainDiagO = true, secDiagX = true, secDiagO = true;
     for (let i = 0; i < 3; ++i) {
-        let row = matrix.children[i];
-        if (row.children[0].innerText == 'X' && row.children[1].innerText == 'X' && row.children[2].innerText == 'X') {
-            return "X";
-        } else if (row.children[0].innerText == 'O' && row.children[1].innerText == 'O' && row.children[2].innerText == 'O') {
-            return "O";
+        if (matrix.children[i].children[i].innerText != 'X') {
+            mainDiagX = false;
         }
-        if (matrix.children[0].children[i].innerText == 'X' && matrix.children[1].children[i].innerText == 'X' && matrix.children[2].children[i].innerText == 'X') {
+        if (matrix.children[i].children[i].innerText != 'O') {
+            mainDiagO = false;
+        }
+        if (matrix.children[i].children[2 - i].innerText != 'X') {
+            secDiagX = false;
+        }
+        if (matrix.children[i].children[2 - i].innerText != 'O') {
+            secDiagO = false;
+        }
+        let rowX = true, rowO = true, colX = true, colO = true;
+        for (let j = 0; j < 3; ++j) {
+            if (matrix.children[i].children[j].innerText != 'X') {
+                rowX = false;
+            }
+            if (matrix.children[i].children[j].innerText != 'O') {
+                rowO = false;
+            }
+            if (matrix.children[j].children[i].innerText != 'X') {
+                colX = false;
+            }
+            if (matrix.children[j].children[i].innerText != 'O') {
+                colO = false;
+            }
+        }
+        if (rowX || colX) {
             return "X";
-        } else if (matrix.children[0].children[i].innerText == 'O' && matrix.children[1].children[i].innerText == 'O' && matrix.children[2].children[i].innerText == 'O') {
+        } else if (rowO || colO) {
             return "O";
         }
     }
-    if (matrix.children[0].children[0].innerText == 'X' && matrix.children[1].children[1].innerText == 'X' && matrix.children[2].children[2].innerText == 'X') {
+    if (mainDiagX || secDiagX) {
         return "X";
-    } else if (matrix.children[0].children[0].innerText == 'O' && matrix.children[1].children[1].innerText == 'O' && matrix.children[2].children[2].innerText == 'O') {
-        return "O";
-    }
-    if (matrix.children[0].children[2].innerText == 'X' && matrix.children[1].children[1].innerText == 'X' && matrix.children[2].children[0].innerText == 'X') {
-        return "X";
-    } else if (matrix.children[0].children[2].innerText == 'O' && matrix.children[1].children[1].innerText == 'O' && matrix.children[2].children[0].innerText == 'O') {
+    } else if (mainDiagO || secDiagO) {
         return "O";
     }
     return false;
 }
 
-let winner = "";
-
 matrix.addEventListener("click", function(evt) {
-    if (pen != "") {
-        if (evt.target.innerText == "") {
-            if (curentPlayer == 1 && clicks1 == 0 && !winner) {
-                clicks2 = 0;
-                evt.target.innerText = pen;
-                message.innerText = "SELECT PLAYER ! \n next turn is player 2, writing O";
-                ++clicks1;
-                ++clicks;
-            } else if (curentPlayer == 2 && clicks2 == 0 && !winner) {
-                clicks1 = 0;
-                evt.target.innerText = pen;
-                message.innerText = "SELECT PLAYER ! \n next turn is player 1, writing X";
-                ++clicks2;
-                ++clicks;
-            } else if (curentPlayer == 1 && !winner) {
-                message.innerText = "WRONG PLAYER ! \n choose player no 2 !";
-            } else if (curentPlayer == 2 && !winner) {
-                message.innerText = "WRONG PLAYER ! \n choose player no 1 !";
-            }
-            if (clicks > 4) {
-                winner = checkWinner();
-                if (winner) {
-                    message.innerText = winner;
-                    alert(winner);
+    if (evt.target.classList.contains("cell")) {
+        if (pen != "") {
+            if (evt.target.innerText == "") {
+                if (curentPlayer == 1 && clicks1 == 0 && !winner) {
+                    clicks2 = 0;
+                    evt.target.innerText = pen;
+                    message.innerText = "SELECT PLAYER ! \n next turn is player 2, writing O";
+                    ++clicks1;
+                    ++clicks;
+                } else if (curentPlayer == 2 && clicks2 == 0 && !winner) {
+                    clicks1 = 0;
+                    evt.target.innerText = pen;
+                    message.innerText = "SELECT PLAYER ! \n next turn is player 1, writing X";
+                    ++clicks2;
+                    ++clicks;
+                } else if (!winner) {
+                    message.innerText = `WRONG PLAYER ! \n choose player no ${opponent} !`;
                 }
+                if (clicks > 4) {
+                    winner = checkWinner();
+                    if (winner) {
+                        message.innerText = `Congratulations\n user ${curentPlayer} wins !`;
+                        alert(`User ${curentPlayer} wins !`);
+                    }
+                }
+            } else if (!winner) {
+                alert("click on an empty box !");
             }
-        } else if (!winner) {
-            alert("click on an empty box !");
+        } else {
+            alert("SET USER FIRST !!");
         }
-    } else {
-        alert("SET USER FIRST !!");
     }
 });
 
