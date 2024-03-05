@@ -3,41 +3,39 @@
     display: -webkit-flexbox;
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 }
-h1 {
+.text {
+    font-family: sans-serif;
     text-align: center;
-    margin: 3%;
-}
-button {
-    border: 1px solid purple;
-    border-radius: 5px;
-    background-color: white;
-    padding: 7px 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-stretch: ultra-expanded;
+    color: #303030;
+}
+button {
+    border: 1px solid #91C8D3;
+    border-radius: 5px;
+    background-color: white;
+    padding: 7px 20px;
 }
 button:hover {
     cursor: pointer;
-    background-color: purple;
-    color: white;
+    background-color: #91C8D3;
 }
 #matrix {
     width: 600px;
     height: 600px;
-    background-color: red;
     margin: auto;
-    margin-top: 3%;
-    align-items: center;
 }
 .cell {
-    width: 190px;
-    height: 190px;
-    margin: 2px;
-    text-align: center;
+    border-radius: 5px;
+    width: 170px;
+    height: 170px;
+    margin: 12px;
     font-size: 10em;
-    background-color: white;
+    background-color: #91C8D3;
 }
 
 

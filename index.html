@@ -6,23 +6,26 @@
         <link href="style.css" rel="stylesheet"> </link>
     </head>
     <body>
-        <h1> Welcome to the most amasing XO game you will ever meet.</h1>
+        <h1 class="text"> Welcome !</h1>
         <section class="flex">
-            <button id="user1" type="submit" onclick="user1(); return false;"> I am user 1 </button>
-            <button id="user2" type="submit" onclick="user2(); return false;"> I am user 2 </button>
+            <button id="user1" class="text" type="submit" onclick="user1(); return false;"> I am user 1 </button>
+            <button id="user2" class="text" type="submit" onclick="user2(); return false;"> I am user 2 </button>
         </section>
-        <h1 id="user">SELECT PLAYER !<br> You'l need to select a player before any move you can make ! </h1>
+        <h1 id="message" class="text">SELECT PLAYER !<br> You'l need to select a player before any move you can make ! </h1>
         <div id="matrix" class="flex" >
-            <div id="cell1" class="cell" ></div>
-            <div id="cell2" class="cell" ></div>
-            <div id="cell3" class="cell" ></div>
-            <div id="cell4" class="cell" ></div>
-            <div id="cell5" class="cell" ></div>
-            <div id="cell6" class="cell" ></div>
-            <div id="cell7" class="cell" ></div>
-            <div id="cell8" class="cell" ></div>
-            <div id="cell9" class="cell" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
+            <div class="cell text" ></div>
         </div>
+        <form class="flex">
+            <button id="reset" class="text" type="submit"> START OVER </button>
+        </form>
         <script src="script.js"></script>
     </body>
 </html>
