@@ -1,7 +1,12 @@
-let curentPlayer = 0, pen = "", user1clicks = 0, user2clicks = 0, winner = "", opponent = 0;
+let curentPlayer = 0, winner = "", opponent = 0, user1clicks = 0, user2clicks = 0, pen = "";
 let matrix = document.getElementById("matrix");
 let button1 = document.getElementById("user1");
 let button2 = document.getElementById("user2");
+
+function displayMessage(status, action, data) {
+    document.getElementById("message1").innerText = status;
+    document.getElementById("message2").innerText = action + data;
+}
 
 function styleButton1() {
     button1.style.background = "#91C8D3";
@@ -16,12 +21,6 @@ function styleButton2() {
     button1.style.background = 0;
     button1.style.color = "black";
 }
-
-function displayMessage(status, action, data) {
-    document.getElementById("message1").innerText = status;
-    document.getElementById("message2").innerText = action + data;
-}
-
 
 function user1() {
     if (!winner) {
@@ -51,51 +50,24 @@ function user2() {
     }
 }
 
-function selectWinner() {
-    let mainDiagX = true, mainDiagO = true, secDiagX = true, secDiagO = true;
-    for (let i = 0; i < 3; ++i) {
-        if (matrix.children[i].children[i].innerText != 'X') {
-            mainDiagX = false;
-        }
-        if (matrix.children[i].children[i].innerText != 'O') {
-            mainDiagO = false;
-        }
-        if (matrix.children[i].children[2 - i].innerText != 'X') {
-            secDiagX = false;
-        }
-        if (matrix.children[i].children[2 - i].innerText != 'O') {
-            secDiagO = false;
-        }
-        let rowX = true, rowO = true, colX = true, colO = true;
-        for (let j = 0; j < 3; ++j) {
-            if (matrix.children[i].children[j].innerText != 'X') {
-                rowX = false;
-            }
-            if (matrix.children[i].children[j].innerText != 'O') {
-                rowO = false;
-            }
-            if (matrix.children[j].children[i].innerText != 'X') {
-                colX = false;
-            }
-            if (matrix.children[j].children[i].innerText != 'O') {
-                colO = false;
-            }
-        }
-        if (rowX || colX) {
-            return "X";
-        } else if (rowO || colO) {
-            return "O";
-        }
+function selectWinner(pen) {
+    if ((matrix.children[0].children[0].innerText === pen && matrix.children[1].children[1].innerText === pen && matrix.children[2].children[2].innerText === pen) || (matrix.children[0].children[2].innerText === pen &&
+        matrix.children[1].children[1].innerText === pen &&
+        matrix.children[2].children[0].innerText === pen)) {
+            return true;
     }
-    if (mainDiagX || secDiagX) {
-        return "X";
-    } else if (mainDiagO || secDiagO) {
-        return "O";
+    for (let i = 0; i < 3; ++i) {
+        if ((matrix.children[i].children[0].innerText === pen &&
+            matrix.children[i].children[1].innerText === pen &&
+            matrix.children[i].children[2].innerText === pen) ||
+            (matrix.children[0].children[i].innerText === pen &&
+            matrix.children[1].children[i].innerText === pen &&
+            matrix.children[2].children[i].innerText === pen)) {
+                return true;
+        }
     }
     return false;
 }
-
-
 
 matrix.addEventListener("click", function(evt) {
     if (evt.target.classList.contains("cell")) {
@@ -114,7 +86,7 @@ matrix.addEventListener("click", function(evt) {
                 } else if (!winner) {
                     displayMessage("WRONG MOVE ! ", "choose player no ", opponent);
                 }
-                winner = selectWinner();
+                winner = selectWinner(pen);
                 if (winner) {
                     displayMessage("Congratulations !!!", "The winner is user ", curentPlayer);
                     alert(`Congratulations user ${curentPlayer} you win !`);
