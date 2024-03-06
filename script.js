@@ -1,6 +1,5 @@
 let curentPlayer = 0, pen = "", user1clicks = 0, user2clicks = 0, winner = "", opponent = 0;
 let matrix = document.getElementById("matrix");
-let statusMessage = document.getElementById("message");
 let button1 = document.getElementById("user1");
 let button2 = document.getElementById("user2");
 
@@ -18,10 +17,10 @@ function styleButton2() {
     button1.style.color = "black";
 }
 
-function displayPlayer() {
-    statusMessage.innerText = `player ${curentPlayer} is set !\n you are playing with ${pen}`;
+function displayMessage(status, action, data) {
+    document.getElementById("message1").innerText = status;
+    document.getElementById("message2").innerText = action + data;
 }
-
 
 
 function user1() {
@@ -32,7 +31,7 @@ function user1() {
             curentPlayer = 1;
             opponent = 2;
             pen = "X";
-            displayPlayer();
+            displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
             styleButton1();
         }
     }
@@ -46,7 +45,7 @@ function user2() {
             curentPlayer = 2;
             opponent = 1;
             pen = "O";
-            displayPlayer();
+            displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
             styleButton2();
         }
     }
@@ -96,9 +95,7 @@ function selectWinner() {
     return false;
 }
 
-function displayMessage(firstPart, data, secondPart) {
-    statusMessage.innerText = firstPart + data + secondPart;
-}
+
 
 matrix.addEventListener("click", function(evt) {
     if (evt.target.classList.contains("cell")) {
@@ -107,19 +104,19 @@ matrix.addEventListener("click", function(evt) {
                 if (curentPlayer == 1 && user1clicks == 0 && !winner) {
                     user2clicks = 0;
                     evt.target.innerText = pen;
-                    displayMessage("SELECT PLAYER ! \n next turn is player ", opponent, "");
+                    displayMessage("SELECT PLAYER !", "next turn is player ", opponent);
                     ++user1clicks;
                 } else if (curentPlayer == 2 && user2clicks == 0 && !winner) {
                     user1clicks = 0;
                     evt.target.innerText = pen;
-                    displayMessage("SELECT PLAYER ! \n next turn is player ", opponent, "");
+                    displayMessage("SELECT PLAYER !", "next turn is player ", opponent);
                     ++user2clicks;
                 } else if (!winner) {
-                    displayMessage("WRONG MOVE ! \n choose player no ", opponent, "");
+                    displayMessage("WRONG MOVE ! ", "choose player no ", opponent);
                 }
                 winner = selectWinner();
                 if (winner) {
-                    displayMessage("Congratulations\n user ", curentPlayer, " win !!!!");
+                    displayMessage("Congratulations !!!", "The winner is user ", curentPlayer);
                     alert(`Congratulations user ${curentPlayer} you win !`);
                 }
             } else if (!winner) {
