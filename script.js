@@ -18,10 +18,7 @@ function user(id, opp, pn) {
         curentPlayer = id;
         opponent = parseInt(opp);
         pen = pn;
-        let clicks = user1clicks;
-        if (id == 2) {
-            clicks = user2clicks;
-        }
+        let clicks = id == 1 ? user1clicks : user2clicks;
         if (clicks > 0) {
             alert("don't try on cheating !");
         } else {
