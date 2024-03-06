@@ -13,7 +13,21 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-stretch: ultra-expanded;
-    color: #303030;
+    color: #414242;
+}
+
+.red {
+    color: #BF3F41;
+}
+
+.cell {
+    border-radius: 5px;
+    width: 170px;
+    height: 170px;
+    margin: 5px;
+    font-size: 10em;
+    color: white;
+    background-color: #91C8D3;
 }
 
 button {
@@ -36,12 +50,4 @@ button:hover {
     margin-bottom: 3%;
 }
 
-.cell {
-    border-radius: 5px;
-    width: 170px;
-    height: 170px;
-    margin: 5px;
-    font-size: 10em;
-    color: white;
-    background-color: #91C8D3;
-}
+
