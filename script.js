@@ -1,5 +1,11 @@
-let curentPlayer = 0, winner = "", opponent = 0, user1clicks = 0, user2clicks = 0, pen = "";
-let matrix = document.getElementById("matrix");
+let game = {
+    curentPlayer: 0,
+    winner: "",
+    opponent: 0,
+    user1clicks: 0,
+    user2clicks: 0,
+    pen: ""
+};
 
 function displayMessage(status, action, data) {
     document.getElementById("message1").innerText = status;
@@ -14,23 +20,27 @@ function styleButtons(button1, button2) {
 }
 
 function user(id, opp, pn) {
-    if (!winner) {
-        curentPlayer = id;
-        opponent = parseInt(opp);
-        pen = pn;
-        let clicks = id == 1 ? user1clicks : user2clicks;
+    if (!game.winner) {
+        let clicks = id == 2 ? game.user2clicks : game.user1clicks;
         if (clicks > 0) {
-            alert("don't try on cheating !");
+            alert("don't try on cheating");
         } else {
-            displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButtons(document.getElementById(id), document.getElementById(opponent));
+            game.curentPlayer = id;
+            game.opponent = parseInt(opp);
+            game.pen = pn;
+            displayMessage(`player ${game.curentPlayer} is set !`, "you are playing with ", game.pen);
+            styleButtons(document.getElementById(id), document.getElementById(game.opponent));
         }
     }
-    
 }
 
+let matrix = document.getElementById("matrix");
+
 function selectWinner(pen) {
-    if ((matrix.children[0].children[0].innerText === pen && matrix.children[1].children[1].innerText === pen && matrix.children[2].children[2].innerText === pen) || (matrix.children[0].children[2].innerText === pen &&
+    if ((matrix.children[0].children[0].innerText === pen &&
+         matrix.children[1].children[1].innerText === pen &&
+         matrix.children[2].children[2].innerText === pen) ||
+        (matrix.children[0].children[2].innerText === pen &&
         matrix.children[1].children[1].innerText === pen &&
         matrix.children[2].children[0].innerText === pen)) {
             return true;
@@ -50,25 +60,25 @@ function selectWinner(pen) {
 
 matrix.addEventListener("click", function(evt) {
     if (evt.target.classList.contains("cell")) {
-        if (pen != "") {
+        if (game.pen != "") {
             if (evt.target.innerText == "") {
-                if (curentPlayer == 1 && user1clicks == 0 && !winner) {
-                    user2clicks = 0;
-                    evt.target.innerText = pen;
-                    displayMessage("SELECT PLAYER !", "next turn is player ", opponent);
-                    ++user1clicks;
-                } else if (curentPlayer == 2 && user2clicks == 0 && !winner) {
-                    user1clicks = 0;
-                    evt.target.innerText = pen;
-                    displayMessage("SELECT PLAYER !", "next turn is player ", opponent);
-                    ++user2clicks;
-                } else if (!winner) {
-                    displayMessage("WRONG MOVE ! ", "choose player no ", opponent);
+                if (game.curentPlayer == 1 && game.user1clicks == 0 && !game.winner) {
+                    game.user2clicks = 0;
+                    evt.target.innerText = game.pen;
+                    displayMessage("SELECT PLAYER !", "next turn is player ", game.opponent);
+                    ++game.user1clicks;
+                } else if (game.curentPlayer == 2 && game.user2clicks == 0 && !game.winner) {
+                    game.user1clicks = 0;
+                    evt.target.innerText = game.pen;
+                    displayMessage("SELECT PLAYER !", "next turn is player ", game.opponent);
+                    ++game.user2clicks;
+                } else if (!game.winner) {
+                    displayMessage("WRONG MOVE ! ", "choose player no ", game.opponent);
                 }
-                winner = selectWinner(pen);
+                winner = selectWinner(game.pen);
                 if (winner) {
-                    displayMessage("Congratulations !!!", "The winner is user ", curentPlayer);
-                    alert(`Congratulations user ${curentPlayer} you win !`);
+                    displayMessage("Congratulations !!!", "The winner is user ", game.curentPlayer);
+                    alert(`Congratulations user ${game.curentPlayer} you win !`);
                 }
             } else if (!winner) {
                 alert("click on an empty box !");
