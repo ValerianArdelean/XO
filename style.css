@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .text {
     font-family: sans-serif;
     text-align: center;
@@ -14,16 +15,19 @@
     font-stretch: ultra-expanded;
     color: #303030;
 }
+
 button {
     border: 1px solid #91C8D3;
     border-radius: 5px;
     background-color: white;
     padding: 7px 18px;
 }
+
 button:hover {
     cursor: pointer;
     background-color: #91C8D3;
 }
+
 #matrix {
     width: 550px;
     height: 550px;
@@ -31,6 +35,7 @@ button:hover {
     margin-top: 4%;
     margin-bottom: 3%;
 }
+
 .cell {
     border-radius: 5px;
     width: 170px;
@@ -40,5 +45,3 @@ button:hover {
     color: white;
     background-color: #91C8D3;
 }
-
-

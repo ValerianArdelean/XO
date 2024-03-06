@@ -1,37 +1,32 @@
-let curentPlayer = 0, pen = "", clicks1 = 0, clicks2 = 0, clicks = 0, winner = "", opponent = 0;
+let curentPlayer = 0, pen = "", user1clicks = 0, user2clicks = 0, winner = "", opponent = 0;
 let matrix = document.getElementById("matrix");
-let message = document.getElementById("message");
+let statusMessage = document.getElementById("message");
 let button1 = document.getElementById("user1");
 let button2 = document.getElementById("user2");
-let color = "#91C8D3";
-
-function displayPlayer() {
-    message.innerText = `player ${curentPlayer} is set !\n you are playing with ${pen}`;
-}
 
 function styleButton1() {
-    button1.style.background = color;
+    button1.style.background = "#91C8D3";
     button1.style.color = "white";
-}
-
-function styleButton2() {
-    button2.style.background = color;
-    button2.style.color = "white";
-}
-
-function resetButton1() {
-    button1.style.background = 0;
-    button1.style.color = "black";
-}
-
-function resetButton2() {
     button2.style.background = 0;
     button2.style.color = "black";
 }
 
+function styleButton2() {
+    button2.style.background = "#91C8D3";
+    button2.style.color = "white";
+    button1.style.background = 0;
+    button1.style.color = "black";
+}
+
+function displayPlayer() {
+    statusMessage.innerText = `player ${curentPlayer} is set !\n you are playing with ${pen}`;
+}
+
+
+
 function user1() {
     if (!winner) {
-        if (clicks1 > 0) {
+        if (user1clicks > 0) {
             alert("don't try on cheating !");
         } else {
             curentPlayer = 1;
@@ -39,14 +34,13 @@ function user1() {
             pen = "X";
             displayPlayer();
             styleButton1();
-            resetButton2();
         }
     }
 }
 
 function user2() {
     if (!winner) {
-        if (clicks2 > 0) {
+        if (user2clicks > 0) {
             alert("don't try on cheating !");
         } else {
             curentPlayer = 2;
@@ -54,12 +48,11 @@ function user2() {
             pen = "O";
             displayPlayer();
             styleButton2();
-            resetButton1();
         }
     }
 }
 
-function checkWinner() {
+function selectWinner() {
     let mainDiagX = true, mainDiagO = true, secDiagX = true, secDiagO = true;
     for (let i = 0; i < 3; ++i) {
         if (matrix.children[i].children[i].innerText != 'X') {
@@ -103,31 +96,31 @@ function checkWinner() {
     return false;
 }
 
+function displayMessage(firstPart, data, secondPart) {
+    statusMessage.innerText = firstPart + data + secondPart;
+}
+
 matrix.addEventListener("click", function(evt) {
     if (evt.target.classList.contains("cell")) {
         if (pen != "") {
             if (evt.target.innerText == "") {
-                if (curentPlayer == 1 && clicks1 == 0 && !winner) {
-                    clicks2 = 0;
+                if (curentPlayer == 1 && user1clicks == 0 && !winner) {
+                    user2clicks = 0;
                     evt.target.innerText = pen;
-                    message.innerText = "SELECT PLAYER ! \n next turn is player 2, writing O";
-                    ++clicks1;
-                    ++clicks;
-                } else if (curentPlayer == 2 && clicks2 == 0 && !winner) {
-                    clicks1 = 0;
+                    displayMessage("SELECT PLAYER ! \n next turn is player ", opponent, "");
+                    ++user1clicks;
+                } else if (curentPlayer == 2 && user2clicks == 0 && !winner) {
+                    user1clicks = 0;
                     evt.target.innerText = pen;
-                    message.innerText = "SELECT PLAYER ! \n next turn is player 1, writing X";
-                    ++clicks2;
-                    ++clicks;
+                    displayMessage("SELECT PLAYER ! \n next turn is player ", opponent, "");
+                    ++user2clicks;
                 } else if (!winner) {
-                    message.innerText = `WRONG PLAYER ! \n choose player no ${opponent} !`;
+                    displayMessage("WRONG MOVE ! \n choose player no ", opponent, "");
                 }
-                if (clicks > 4) {
-                    winner = checkWinner();
-                    if (winner) {
-                        message.innerText = `Congratulations\n user ${curentPlayer} wins !`;
-                        alert(`User ${curentPlayer} wins !`);
-                    }
+                winner = selectWinner();
+                if (winner) {
+                    displayMessage("Congratulations\n user ", curentPlayer, " win !!!!");
+                    alert(`Congratulations user ${curentPlayer} you win !`);
                 }
             } else if (!winner) {
                 alert("click on an empty box !");
@@ -137,5 +130,3 @@ matrix.addEventListener("click", function(evt) {
         }
     }
 });
-
-
