@@ -13,26 +13,23 @@ function styleButtons(button1, button2) {
     button2.style.color = "black";
 }
 
-function user(id) {
+function user(id, opp, pn) {
     if (!winner) {
-        let btn = 2;
-        let clicks = user1clicks;
         curentPlayer = id;
-        opponent = 2;
-        pen = "X";
+        opponent = parseInt(opp);
+        pen = pn;
+        let clicks = user1clicks;
         if (id == 2) {
             clicks = user2clicks;
-            opponent = 1;
-            pen = "O";
-            btn = 1;
         }
         if (clicks > 0) {
             alert("don't try on cheating !");
         } else {
             displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButtons(document.getElementById(id), document.getElementById(btn));
+            styleButtons(document.getElementById(id), document.getElementById(opponent));
         }
     }
+    
 }
 
 function selectWinner(pen) {
