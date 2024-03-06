@@ -8,18 +8,11 @@ function displayMessage(status, action, data) {
     document.getElementById("message2").innerText = action + data;
 }
 
-function styleButton1() {
+function styleButtons(button1, button2) {
     button1.style.background = "#91C8D3";
     button1.style.color = "white";
     button2.style.background = 0;
     button2.style.color = "black";
-}
-
-function styleButton2() {
-    button2.style.background = "#91C8D3";
-    button2.style.color = "white";
-    button1.style.background = 0;
-    button1.style.color = "black";
 }
 
 function user1() {
@@ -31,7 +24,7 @@ function user1() {
             opponent = 2;
             pen = "X";
             displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButton1();
+            styleButtons(button1, button2);
         }
     }
 }
@@ -45,7 +38,7 @@ function user2() {
             opponent = 1;
             pen = "O";
             displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButton2();
+            styleButtons(button2, button1);
         }
     }
 }
