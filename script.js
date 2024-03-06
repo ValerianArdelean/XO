@@ -1,7 +1,5 @@
 let curentPlayer = 0, winner = "", opponent = 0, user1clicks = 0, user2clicks = 0, pen = "";
 let matrix = document.getElementById("matrix");
-let button1 = document.getElementById("user1");
-let button2 = document.getElementById("user2");
 
 function displayMessage(status, action, data) {
     document.getElementById("message1").innerText = status;
@@ -15,30 +13,24 @@ function styleButtons(button1, button2) {
     button2.style.color = "black";
 }
 
-function user1() {
+function user(id) {
     if (!winner) {
-        if (user1clicks > 0) {
-            alert("don't try on cheating !");
-        } else {
-            curentPlayer = 1;
-            opponent = 2;
-            pen = "X";
-            displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButtons(button1, button2);
-        }
-    }
-}
-
-function user2() {
-    if (!winner) {
-        if (user2clicks > 0) {
-            alert("don't try on cheating !");
-        } else {
-            curentPlayer = 2;
+        let btn = 2;
+        let clicks = user1clicks;
+        curentPlayer = id;
+        opponent = 2;
+        pen = "X";
+        if (id == 2) {
+            clicks = user2clicks;
             opponent = 1;
             pen = "O";
+            btn = 1;
+        }
+        if (clicks > 0) {
+            alert("don't try on cheating !");
+        } else {
             displayMessage(`player ${curentPlayer} is set !`, "you are playing with ", pen);
-            styleButtons(button2, button1);
+            styleButtons(document.getElementById(id), document.getElementById(btn));
         }
     }
 }
