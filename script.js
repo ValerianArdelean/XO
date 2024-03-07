@@ -75,12 +75,12 @@ matrix.addEventListener("click", function(evt) {
                 } else if (!game.winner) {
                     displayMessage("WRONG MOVE ! ", "choose player no ", game.opponent);
                 }
-                winner = selectWinner(game.pen);
-                if (winner) {
+                game.winner = selectWinner(game.pen);
+                if (game.winner) {
                     displayMessage("Congratulations !!!", "The winner is user ", game.curentPlayer);
                     alert(`Congratulations user ${game.curentPlayer} you win !`);
                 }
-            } else if (!winner) {
+            } else if (!game.winner) {
                 alert("click on an empty box !");
             }
         } else {
