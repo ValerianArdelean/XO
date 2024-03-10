@@ -2,11 +2,11 @@ const gridSize = 3;
 const matrix = document.getElementById("matrix");
 
 let game = {
-    curentPlayer: 0,
+	curentPlayer: 0,
 	opponent: 0,
-    winner: "",
+	winner: "",
 	pen: "",
-    clicks: [0, 0, 0]
+	clicks: [0, 0, 0]
 };
 
 function createGrid() {
