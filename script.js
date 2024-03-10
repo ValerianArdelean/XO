@@ -59,8 +59,7 @@ function selectWinner(pen) {
 
 function userChoice(id, opp, pn) {
 	if (!game.winner) {
-		let clicks = id == 2 ? game.user2clicks : game.user1clicks;
-		if (clicks > 0) {
+		if ((id == 2 && game.user2clicks > 0) || (id == 1 && game.user1clicks > 0)) {
 			alert("don't try on cheating");
 		} else {
 			game.curentPlayer = id;
