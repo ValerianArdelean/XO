@@ -3,8 +3,7 @@ let game = {
 	opponent: 0,
     winner: "",
 	pen: "",
-    user1clicks: 0,
-    user2clicks: 0,
+    clicks: [0, 0, 0],
 	matrix: document.getElementById("matrix")
 };
 
@@ -59,7 +58,7 @@ function selectWinner(pen) {
 
 function userChoice(id, opp, pn) {
 	if (!game.winner) {
-		if ((id == 2 && game.user2clicks > 0) || (id == 1 && game.user1clicks > 0)) {
+		if (game.clicks[id] > 0) {
 			alert("don't try on cheating");
 		} else {
 			game.curentPlayer = id;
@@ -75,16 +74,11 @@ function userMove(cell) {
 	if (!game.winner) {
 		if (game.pen != "") {
 			if (cell.textContent == "") {
-				if (game.curentPlayer == 1 && game.user1clicks == 0) {
-					game.user2clicks = 0;
+				if (game.clicks[game.curentPlayer] == 0) {
+					game.clicks[game.opponent] = 0;
 					cell.textContent = game.pen;
 					displayMessage("SELECT PLAYER !", "next turn is player ", game.opponent);
-					++game.user1clicks;
-				} else if (game.curentPlayer == 2 && game.user2clicks == 0) {
-					game.user1clicks = 0;
-					cell.textContent = game.pen;
-					displayMessage("SELECT PLAYER !", "next turn is player ", game.opponent);
-					++game.user2clicks;
+					++game.clicks[game.curentPlayer];
 				} else {
 					displayMessage("WRONG MOVE ! ", "choose player no ", game.opponent);
 				}
