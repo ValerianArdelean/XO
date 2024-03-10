@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>XO</title>
+        <title>X O</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="style.css" rel="stylesheet"> </link>
     </head>
-    <body>
+    <body onload="createGrid()">
         <h1 class="text">*** Welcome ! ***</h1>
         <section class="flex">
             <button id="1" opponent="2" pen="X" class="text"
-                    onclick="user(this.id, this.getAttribute('opponent'), this.getAttribute('pen'))">
+                    onclick="userChoice(this.id, this.getAttribute('opponent'), this.getAttribute('pen'))">
                 i am user 1
             </button>
             <button id="2" opponent="1" pen="O" class="text"
-                    onclick="user(this.id, this.getAttribute('opponent'), this.getAttribute('pen'))">
+                    onclick="userChoice(this.id, this.getAttribute('opponent'), this.getAttribute('pen'))">
                 i am user 2
             </button>
         </section>
         <h2 id="message1" class="text red">select player !</h2>
         <h2 id="message2" class="text">please set who you are first !</h2>
-        <div id="matrix">
-            <div class="flex row">
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-            </div>
-            <div class="flex row">
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-            </div>
-            <div class="flex row">
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-                <div class="cell text" ></div>
-            </div>
-        </div>
+        <div id="matrix"></div>
         <form class="flex">
             <button id="reset" class="text red" type="submit">start over</button>
         </form>
