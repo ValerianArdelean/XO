@@ -37,20 +37,20 @@ function styleButtons(button1, button2) {
 
 function selectWinner(pen) {
     if ((matrix.children[0].children[0].innerText === pen &&
-		 matrix.children[1].children[1].innerText === pen &&
-		 matrix.children[2].children[2].innerText === pen) ||
-        (matrix.children[0].children[2].innerText === pen &&
-		 matrix.children[1].children[1].innerText === pen &&
-		 matrix.children[2].children[0].innerText === pen)) {
-            return true;
+		matrix.children[1].children[1].innerText === pen &&
+		matrix.children[2].children[2].innerText === pen) ||
+		(matrix.children[0].children[2].innerText === pen &&
+		matrix.children[1].children[1].innerText === pen &&
+		matrix.children[2].children[0].innerText === pen)) {
+			return true;
     }
     for (let i = 0; i < gridSize; ++i) {
         if ((matrix.children[i].children[0].innerText === pen &&
-			 matrix.children[i].children[1].innerText === pen &&
-			 matrix.children[i].children[2].innerText === pen) ||
+			matrix.children[i].children[1].innerText === pen &&
+			matrix.children[i].children[2].innerText === pen) ||
             (matrix.children[0].children[i].innerText === pen &&
-			 matrix.children[1].children[i].innerText === pen &&
-			 matrix.children[2].children[i].innerText === pen)) {
+			matrix.children[1].children[i].innerText === pen &&
+			matrix.children[2].children[i].innerText === pen)) {
                 return true;
         }
     }
