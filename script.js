@@ -4,15 +4,15 @@ let game = {
     winner: "",
 	pen: "",
     clicks: [0, 0, 0],
-	matrix: document.getElementById("matrix")
+	matrix: document.getElementById("matrix"),
+	gridSize: 3
 };
 
 function createGrid() {
-	const gridSize = 3;
-	for (let i = 0; i < gridSize; ++i) {
+	for (let i = 0; i < game.gridSize; ++i) {
 		let row = document.createElement("div");
 		row.classList.add("flex", "row");
-		for (let j = 0; j < gridSize; ++j) {
+		for (let j = 0; j < game.gridSize; ++j) {
 			let cell = document.createElement("div");
 			cell.classList.add("cell", "text");
 			cell.setAttribute("onclick", "userMove(this)");
@@ -43,7 +43,7 @@ function selectWinner(pen) {
 		 game.matrix.children[2].children[0].innerText === pen)) {
             return true;
     }
-    for (let i = 0; i < 3; ++i) {
+    for (let i = 0; i < game.gridSize; ++i) {
         if ((game.matrix.children[i].children[0].innerText === pen &&
 			 game.matrix.children[i].children[1].innerText === pen &&
 			 game.matrix.children[i].children[2].innerText === pen) ||
@@ -79,13 +79,16 @@ function userMove(cell) {
 					cell.textContent = game.pen;
 					displayMessage("SELECT PLAYER !", "next turn is player ", game.opponent);
 					++game.clicks[game.curentPlayer];
+					++game.clicks[0];
 				} else {
 					displayMessage("WRONG MOVE ! ", "choose player no ", game.opponent);
 				}
 				game.winner = selectWinner(game.pen);
-				if (game.winner) {
+				if (game.winner && game.winner != "tie") {
 					displayMessage("Congratulations !!!", "The winner is user ", game.curentPlayer);
-					alert(`Congratulations user ${game.curentPlayer} you win !`);
+				} else if (game.clicks[0] >= game.gridSize * game.gridSize) {
+					game.winner = "tie";
+					displayMessage("Is a tie !", "Start Over !", "");
 				}
 			} else {
 				alert("click on an empty box !");
