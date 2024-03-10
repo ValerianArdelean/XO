@@ -1,24 +1,25 @@
+const gridSize = 3;
+const matrix = document.getElementById("matrix");
+
 let game = {
     curentPlayer: 0,
 	opponent: 0,
     winner: "",
 	pen: "",
-    clicks: [0, 0, 0],
-	matrix: document.getElementById("matrix"),
-	gridSize: 3
+    clicks: [0, 0, 0]
 };
 
 function createGrid() {
-	for (let i = 0; i < game.gridSize; ++i) {
+	for (let i = 0; i < gridSize; ++i) {
 		let row = document.createElement("div");
 		row.classList.add("flex", "row");
-		for (let j = 0; j < game.gridSize; ++j) {
+		for (let j = 0; j < gridSize; ++j) {
 			let cell = document.createElement("div");
 			cell.classList.add("cell", "text");
 			cell.setAttribute("onclick", "userMove(this)");
 			row.appendChild(cell);
 		}
-		game.matrix.appendChild(row);
+		matrix.appendChild(row);
 	}
 }
 
@@ -35,21 +36,21 @@ function styleButtons(button1, button2) {
 }
 
 function selectWinner(pen) {
-    if ((game.matrix.children[0].children[0].innerText === pen &&
-		 game.matrix.children[1].children[1].innerText === pen &&
-		 game.matrix.children[2].children[2].innerText === pen) ||
-        (game.matrix.children[0].children[2].innerText === pen &&
-		 game.matrix.children[1].children[1].innerText === pen &&
-		 game.matrix.children[2].children[0].innerText === pen)) {
+    if ((matrix.children[0].children[0].innerText === pen &&
+		 matrix.children[1].children[1].innerText === pen &&
+		 matrix.children[2].children[2].innerText === pen) ||
+        (matrix.children[0].children[2].innerText === pen &&
+		 matrix.children[1].children[1].innerText === pen &&
+		 matrix.children[2].children[0].innerText === pen)) {
             return true;
     }
-    for (let i = 0; i < game.gridSize; ++i) {
-        if ((game.matrix.children[i].children[0].innerText === pen &&
-			 game.matrix.children[i].children[1].innerText === pen &&
-			 game.matrix.children[i].children[2].innerText === pen) ||
-            (game.matrix.children[0].children[i].innerText === pen &&
-			 game.matrix.children[1].children[i].innerText === pen &&
-			 game.matrix.children[2].children[i].innerText === pen)) {
+    for (let i = 0; i < gridSize; ++i) {
+        if ((matrix.children[i].children[0].innerText === pen &&
+			 matrix.children[i].children[1].innerText === pen &&
+			 matrix.children[i].children[2].innerText === pen) ||
+            (matrix.children[0].children[i].innerText === pen &&
+			 matrix.children[1].children[i].innerText === pen &&
+			 matrix.children[2].children[i].innerText === pen)) {
                 return true;
         }
     }
@@ -86,7 +87,7 @@ function userMove(cell) {
 				game.winner = selectWinner(game.pen);
 				if (game.winner && game.winner != "tie") {
 					displayMessage("Congratulations !!!", "The winner is user ", game.curentPlayer);
-				} else if (game.clicks[0] >= game.gridSize * game.gridSize) {
+				} else if (game.clicks[0] >= gridSize * gridSize) {
 					game.winner = "tie";
 					displayMessage("Is a tie !", "Start Over !", "");
 				}
