@@ -9,8 +9,7 @@ button {
 	cursor: pointer;
 }
 
-button:hover,
-.backgroundColor {
+button:hover, .backgroundColor {
 	background-color: #91C8D3;
 }
 
@@ -23,12 +22,12 @@ button:hover,
 }
 
 .flex {
-    display: flex;
-    display: -webkit-flexbox;
-    flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	display: -webkit-flexbox;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }
 
 .text {
