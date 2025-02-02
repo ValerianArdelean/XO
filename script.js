@@ -57,14 +57,14 @@ function selectWinner(pen) {
     return false;
 }
 
-function userChoice(id, opp, pn) {
+function userChoice(id, opponent, pen) {
 	if (!game.winner) {
 		if (game.clicks[id] > 0) {
 			alert("don't try on cheating");
 		} else {
 			game.currentPlayer = id;
-			game.opponent = parseInt(opp);
-			game.pen = pn;
+			game.opponent = parseInt(opponent);
+			game.pen = pen;
 			displayMessage(`player ${game.currentPlayer} is set !`, "you are playing with ", game.pen);
 			styleButtons(document.getElementById(id), document.getElementById(game.opponent));
 		}
