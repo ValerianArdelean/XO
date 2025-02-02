@@ -15,7 +15,7 @@ function createGrid() {
 		row.classList.add("flex", "row");
 		for (let j = 0; j < gridSize; ++j) {
 			let cell = document.createElement("div");
-			cell.classList.add("cell", "text");
+			cell.classList.add("cell", "text", "borderRadius", "backgroundColor");
 			cell.setAttribute("onclick", "userMove(this)");
 			row.appendChild(cell);
 		}

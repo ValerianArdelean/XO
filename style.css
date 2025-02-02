@@ -1,3 +1,27 @@
+h1, h2 {
+	margin: 2%;
+}
+
+button {
+	border: 1px solid #91C8D3;
+	background-color: white;
+	padding: 7px 18px;
+	cursor: pointer;
+}
+
+button:hover,
+.backgroundColor {
+	background-color: #91C8D3;
+}
+
+#matrix {
+	width: 550px;
+	height: 550px;
+	margin: auto;
+	margin-top: 4%;
+	margin-bottom: 3%;
+}
+
 .flex {
     display: flex;
     display: -webkit-flexbox;
@@ -8,49 +32,26 @@
 }
 
 .text {
-    font-family: sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-stretch: ultra-expanded;
-    color: #414242;
+	font-family: sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-stretch: ultra-expanded;
+	color: #414242;
 }
 
 .red {
-    color: #BF3F41;
+	color: #BF3F41;
 }
 
 .cell {
-    border-radius: 5px;
-    width: 170px;
-    height: 170px;
-    margin: 5px;
-    font-size: 10em;
-    color: white;
-    background-color: #91C8D3;
+	width: 170px;
+	height: 170px;
+	margin: 5px;
+	font-size: 10em;
+	color: white;
 }
 
-button {
-    border: 1px solid #91C8D3;
-    border-radius: 5px;
-    background-color: white;
-    padding: 7px 18px;
+.borderRadius {
+	border-radius: 5px;
 }
-
-button:hover {
-    cursor: pointer;
-    background-color: #91C8D3;
-}
-
-#matrix {
-    width: 550px;
-    height: 550px;
-    margin: auto;
-    margin-top: 4%;
-    margin-bottom: 3%;
-}
-
-h1, h2 {
-    margin: 2%;
-}
-
