@@ -24,19 +24,19 @@ function createGrid() {
 }
 
 function displayMessage(status, action, data) {
-    document.getElementById("message1").innerText = status;
-    document.getElementById("message2").innerText = action + data;
+	document.getElementById("message1").innerText = status;
+	document.getElementById("message2").innerText = action + data;
 }
 
 function styleButtons(button1, button2) {
-    button1.style.background = "#91C8D3";
-    button1.style.color = "white";
-    button2.style.background = "";
-    button2.style.color = "black";
+	button1.style.background = "#91C8D3";
+	button1.style.color = "white";
+	button2.style.background = "";
+	button2.style.color = "black";
 }
 
 function selectWinner(pen) {
-    if ((matrix.children[0].children[0].innerText === pen &&
+	if ((matrix.children[0].children[0].innerText === pen &&
 		 matrix.children[1].children[1].innerText === pen &&
 		 matrix.children[2].children[2].innerText === pen) ||
 		(matrix.children[0].children[2].innerText === pen &&
@@ -45,7 +45,7 @@ function selectWinner(pen) {
 		return true;
     }
     for (let i = 0; i < gridSize; ++i) { 
-	    if ((matrix.children[i].children[0].innerText === pen &&
+		if ((matrix.children[i].children[0].innerText === pen &&
 			 matrix.children[i].children[1].innerText === pen &&
 			 matrix.children[i].children[2].innerText === pen) ||
 			(matrix.children[0].children[i].innerText === pen &&
